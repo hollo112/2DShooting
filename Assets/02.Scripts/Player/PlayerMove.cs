@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour
 
     // 필요 속성:
     public float Speed = 3f;    // 속력
+    public float MinX = -2.4f, MaxX = 2.4f, MinY = -5f, MAXY = 0f; // 이동 범위
 
     // 게임 오브젝트가 게임을 시작할 때
     private void Start()
@@ -28,22 +29,38 @@ public class PlayerMove : MonoBehaviour
         float h = Input.GetAxis("Horizontal");    // 세로축, 수평 입력에 대한 값을 -1, 0, 1사이로 가져온다
         float v = Input.GetAxis("Vertical");      // 가로축, 수직 입력에 대한 값을 -1, 0, 1사이로 가져온다
 
-        Debug.Log($"h: {h}, v: {v}");
-
         // 2. 방향을 구한다.
         Vector2 direction = new Vector2(h, v);   // 방향 벡터를 만든다
-        Debug.Log($"direction: {direction}");
-
+        
         // 3. 이동한다.
         Vector2 position = transform.position;          // 현재 위치를 가져온다
+
+        // 속도 조절
+        ChangeSpeed();
 
         // 새로운 위치 = 현재 위치 + 방향 * 속력 * 시간
         // 새로운 위치 = 현재 위치 + 속도 * 시간
         Vector2 newPosition = position + direction * Speed * Time.deltaTime;     // 새로운 위치
 
+        // 이동 범위 제한
+        newPosition.x = Mathf.Clamp(newPosition.x, MinX, MaxX); // x좌표 범위 제한
+        newPosition.y = Mathf.Clamp(newPosition.y, MinY, MAXY); // y좌표 범위 제한
+
         // Time.deltaTime : 마지막 프레임이 끝나고 지금 프레임이 시작될 때까지 걸린 시간(초)
         // 1초 / fps 값과 비슷하다
         transform.position = newPosition;               // 새로운 위치로 이동한다
         
+    }
+
+    private void ChangeSpeed()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Speed += 1f; 
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            Speed -= 1f;
+        }
     }
 }
