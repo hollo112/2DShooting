@@ -14,12 +14,18 @@ public class PlayerMove : MonoBehaviour
     // 필요 속성:
     [Header("능력치")]
     public float Speed = 3f;    // 속력
+    
+    public float MaxSpeed = 10f;
+    public float MinSpeed = 1f;
+    public float SpeedUpFactor = 1.2f;    // Shift키 누르면 속도 배 상승
 
     [Header("이동 범위")]
     public float MinX = -2.4f;
     public float MaxX = 2.4f;
     public float MinY = -5f;
     public float MaxY = 0f;
+    public float OriginX = 0f;
+    public float OriginY = -2.5f;
 
     // 게임 오브젝트가 게임을 시작할 때
     private void Start()
@@ -46,10 +52,12 @@ public class PlayerMove : MonoBehaviour
 
         // 속도 조절
         ChangeSpeed();
+        SpeedUpShift(); // Shift키 누르면 속도 상승
 
         // 새로운 위치 = 현재 위치 + 방향 * 속력 * 시간
         // 새로운 위치 = 현재 위치 + 속도 * 시간
         Vector2 newPosition = position + direction * Speed * Time.deltaTime;     // 새로운 위치
+        
 
         // 이동 범위 제한
         //newPosition.x = Mathf.Clamp(newPosition.x, MinX, MaxX); // x좌표 범위 제한
@@ -59,19 +67,26 @@ public class PlayerMove : MonoBehaviour
         // Time.deltaTime : 마지막 프레임이 끝나고 지금 프레임이 시작될 때까지 걸린 시간(초)
         // 1초 / fps 값과 비슷하다
         transform.position = newPosition;               // 새로운 위치로 이동한다
-        
+
+        // R키를 누르면 원점으로 이동
+        if (Input.GetKey(KeyCode.R))
+        {
+            MoveToOrigin(position);
+        }
     }
 
     private void ChangeSpeed()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Speed += 1f; 
+            Speed++;
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            Speed -= 1f;
+            Speed--;    
         }
+
+        Speed = Mathf.Clamp(Speed, MinSpeed, MaxSpeed); // 속도 범위 제한
     }
 
     // 플레이어의 x좌표를 화면 밖으로 나가면 반대편에서 나오도록 처리
@@ -87,5 +102,26 @@ public class PlayerMove : MonoBehaviour
         }
 
         return newPosition;
+    }
+
+    private void SpeedUpShift()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Speed *= SpeedUpFactor;
+        }   
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            Speed /= SpeedUpFactor;
+        }
+    }
+
+    private void MoveToOrigin(Vector2 position)
+    {
+        Vector2 origin = new Vector2(OriginX, OriginY);
+        Vector2 direction = origin - position;
+        direction = direction.normalized;
+
+        transform.Translate(direction * Speed * Time.deltaTime);
     }
 }
