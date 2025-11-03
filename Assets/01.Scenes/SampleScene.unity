@@ -373,13 +373,12 @@ MonoBehaviour:
   Speed: 3
   MaxSpeed: 10
   MinSpeed: 1
-  SpeedUpFactor: 2
+  SpeedMultiplier: 1.2
   MinX: -2.4
   MaxX: 2.4
   MinY: -5
   MaxY: 0
-  OriginX: 0
-  OriginY: -2.5
+  Origin: {x: 0, y: -2.5}
 --- !u!212 &703358262
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -444,7 +443,7 @@ Transform:
   m_GameObject: {fileID: 703358260}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.49, z: 0}
+  m_LocalPosition: {x: 0, y: -2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
