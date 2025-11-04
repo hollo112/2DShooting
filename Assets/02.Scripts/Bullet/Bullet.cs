@@ -19,6 +19,7 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         AccelerateBullet();
+        //AccelerateBullet2();
         MoveBullet();
     }
 
@@ -30,6 +31,13 @@ public class Bullet : MonoBehaviour
             float t = _elapsedTime / AccerationTime; // 0 ~ 1
             _speed = Mathf.Lerp(FirstSpeed, LastSpeed, t);
         }
+    }
+
+    void AccelerateBullet2()
+    {
+        float acceleration = (LastSpeed - FirstSpeed) / AccerationTime;
+        _speed += acceleration * Time.deltaTime;
+        _speed = Mathf.Min(_speed, LastSpeed);
     }
 
     void MoveBullet()
