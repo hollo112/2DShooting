@@ -7,6 +7,7 @@ public class PlayerFire : MonoBehaviour
     public GameObject StraightBulletPrefab;
     public GameObject SubBulletPrefab;
     public GameObject WaveBulletPrefab;
+    public GameObject CircleBulletPrefab;
     private GameObject _currentMainBulletPrefab;
 
     [Header("발사 위치")]
@@ -20,13 +21,14 @@ public class PlayerFire : MonoBehaviour
     public enum FireType
     {
         Auto = 1,
-        Manual = 2
+        Manual = 2,
     }
 
     public enum BulletType
     {
         Straight = 1,
-        SineWave = 2
+        Wave = 2,
+        Circle = 3,
     }
 
     [Header("공격 모드")]
@@ -91,18 +93,25 @@ public class PlayerFire : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.Alpha4))
         {
-            CurrentBulletType = BulletType.SineWave;
+            CurrentBulletType = BulletType.Wave;
+        }
+        else if( Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            CurrentBulletType = BulletType.Circle;
         }
 
-        switch (CurrentBulletType)
-        {
-            case BulletType.Straight:
-                _currentMainBulletPrefab = StraightBulletPrefab;
-                break;
-            case BulletType.SineWave:
-                _currentMainBulletPrefab = WaveBulletPrefab;
-                break;
-        }
+            switch (CurrentBulletType)
+            {
+                case BulletType.Straight:
+                    _currentMainBulletPrefab = StraightBulletPrefab;
+                    break;
+                case BulletType.Wave:
+                    _currentMainBulletPrefab = WaveBulletPrefab;
+                    break;
+                case BulletType.Circle:
+                    _currentMainBulletPrefab = CircleBulletPrefab;
+                    break;
+            }
     }
 
     void MakeMainBullet()

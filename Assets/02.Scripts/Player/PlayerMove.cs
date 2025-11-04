@@ -21,7 +21,7 @@ public class PlayerMove : MonoBehaviour
     public float MinY = -5f;
     public float MaxY = 0f;
 
-    private bool isReturningToOrigin = false; // 원점으로 이동 중인지 여부
+    private bool _isReturningToOrigin = false; // 원점으로 이동 중인지 여부
 
     // 게임 오브젝트가 게임을 시작할 때
     private void Start()
@@ -71,11 +71,11 @@ public class PlayerMove : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            isReturningToOrigin = true;
+            _isReturningToOrigin = true;
         }
         else if (Input.GetKeyUp(KeyCode.R))
         {
-            isReturningToOrigin = false;
+            _isReturningToOrigin = false;
         }
     }
     private void MovePlayer()
@@ -102,7 +102,7 @@ public class PlayerMove : MonoBehaviour
 
     private Vector2 GetMovementDirection(Vector2 currentPosition)
     {
-        if (isReturningToOrigin)
+        if (_isReturningToOrigin)
         {
             Vector2 directionToOrigin = _originPosition - currentPosition;
             return directionToOrigin.normalized;
