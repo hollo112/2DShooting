@@ -504,7 +504,7 @@ MonoBehaviour:
   - {fileID: 1817414297}
   SubFirePositionLeft: {fileID: 1610484617}
   SubFirePositionRight: {fileID: 684161511}
-  Cooltime: 1.2
+  Cooltime: 0.8
   CurrentFireType: 1
   CurrentBulletType: 1
 --- !u!1 &1286591349

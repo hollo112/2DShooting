@@ -7,12 +7,11 @@ public class PlayerFire : MonoBehaviour
     public GameObject StraightBulletPrefab;
     public GameObject SubBulletPrefab;
     public GameObject WaveBulletPrefab;
-    private GameObject _currentBulletPrefab;
+    private GameObject _currentMainBulletPrefab;
 
     [Header("발사 위치")]
     public Transform[] FirePosition;
-    public Transform SubFirePositionLeft;
-    public Transform SubFirePositionRight;
+    public Transform[] SubFirePosition;
 
     [Header("발사 간격")]
     public float Cooltime = 0.6f;
@@ -53,15 +52,8 @@ public class PlayerFire : MonoBehaviour
             return;
         }
 
-        foreach (Transform pos in FirePosition)
-        {
-            Instantiate(_currentBulletPrefab, pos.position, Quaternion.identity);
-        }
-
-        var leftSubBullet = Instantiate(SubBulletPrefab, SubFirePositionLeft.position, Quaternion.identity).GetComponent<Bullet>();
-        leftSubBullet.Direction = Bullet.BulletDirection.Left;
-        var rightSubBullet = Instantiate(SubBulletPrefab, SubFirePositionRight.position, Quaternion.identity).GetComponent<Bullet>();
-        rightSubBullet.Direction = Bullet.BulletDirection.Right;
+        MakeMainBullet();
+        MakeSubBullet();
 
         _fireTimer = 0f;
     }
@@ -105,11 +97,27 @@ public class PlayerFire : MonoBehaviour
         switch (CurrentBulletType)
         {
             case BulletType.Straight:
-                _currentBulletPrefab = StraightBulletPrefab;
+                _currentMainBulletPrefab = StraightBulletPrefab;
                 break;
             case BulletType.SineWave:
-                _currentBulletPrefab = WaveBulletPrefab;
+                _currentMainBulletPrefab = WaveBulletPrefab;
                 break;
+        }
+    }
+
+    void MakeMainBullet()
+    {
+        foreach (Transform pos in FirePosition)
+        {
+            Instantiate(_currentMainBulletPrefab, pos.position, Quaternion.identity);
+        }
+    }
+
+    void MakeSubBullet()
+    {
+        foreach (Transform pos in SubFirePosition)
+        {
+            Instantiate(SubBulletPrefab, pos.position, Quaternion.identity);
         }
     }
 }
