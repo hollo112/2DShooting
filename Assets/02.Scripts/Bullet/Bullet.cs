@@ -1,49 +1,47 @@
 ﻿using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public abstract class Bullet : MonoBehaviour
 {
-    [Header("이동속도")]
-    public float FirstSpeed = 1f;
-    public float LastSpeed = 7f;
-    private float _speed;
+    [Header("탄환 속도")]
+    protected float Speed;
 
-    [Header("가속시간")]
-    public float AccerationTime = 1.2f;
-    private float _elapsedTime = 0f;
-
-    void Start()
+    public enum BulletDirection
     {
-        _speed = FirstSpeed;
+        Up,
+        Down,
+        Left,
+        Right
     }
 
-    void Update()
+    [Header("탄환 이동방향")]
+    public BulletDirection Direction = BulletDirection.Up;
+
+    protected virtual void Start()
     {
-        AccelerateBullet();
-        //AccelerateBullet2();
+        
+    }
+
+    protected virtual void Update()
+    {
         MoveBullet();
     }
 
-    void AccelerateBullet()
+    protected Vector2 GetDirection(BulletDirection direction)
     {
-        if (_elapsedTime < AccerationTime)
+        switch(direction)
         {
-            _elapsedTime += Time.deltaTime;
-            float t = _elapsedTime / AccerationTime; // 0 ~ 1
-            _speed = Mathf.Lerp(FirstSpeed, LastSpeed, t);
+            case BulletDirection.Up:
+                return Vector2.up;
+            case BulletDirection.Down:
+                return Vector2.down;
+            case BulletDirection.Left:
+                return Vector2.left;
+            case BulletDirection.Right:
+                return Vector2.right;
+            default:
+                return Vector2.up;
         }
     }
 
-    void AccelerateBullet2()
-    {
-        float acceleration = (LastSpeed - FirstSpeed) / AccerationTime;
-        _speed += acceleration * Time.deltaTime;
-        _speed = Mathf.Min(_speed, LastSpeed);
-    }
-
-    void MoveBullet()
-    {
-        Vector2 position = transform.position;
-        Vector2 newPosition = position + Vector2.up * _speed * Time.deltaTime;
-        transform.position = newPosition;
-    }
+    public abstract void MoveBullet();
 }
