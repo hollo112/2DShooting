@@ -6,6 +6,8 @@ public abstract class Bullet : MonoBehaviour
     [SerializeField]protected float Speed = 6f;
     [Header("탄환 데미지")]
     [SerializeField]protected float Damage = 60f;
+
+    private bool _isHit = false;
     public enum BulletDirection
     {
         Up,
@@ -48,16 +50,18 @@ public abstract class Bullet : MonoBehaviour
     public abstract void MoveBullet();
 
     public void OnTriggerEnter2D(Collider2D other)
-    {
+    {   
         DamageEnemy(other.gameObject);
+        _isHit = true;
     }
 
     private void DamageEnemy(GameObject target)
     {
+        if (_isHit) return;
         if (target.CompareTag("Enemy") == false) return;
 
-        Enemy enemy = target.GetComponent<Enemy>();
-        enemy.TakeDamage(Damage);
+        EnemyHit enemyHit = target.GetComponent<EnemyHit>();
+        enemyHit.OnHit(Damage);
         
         Destroy(gameObject);
     }

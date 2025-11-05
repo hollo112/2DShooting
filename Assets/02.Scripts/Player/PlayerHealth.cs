@@ -3,13 +3,13 @@
 public class PlayerHealth : MonoBehaviour
 {
     [Header("능력치")]
-    [SerializeField] private int _healthCount = 3;
+    [SerializeField] private float _health = 3;
     
-    public void TakeDamage()
+    public void TakeDamage(float damage)
     {
-        _healthCount--;
+        _health -= damage;
 
-        if(_healthCount <= 0 )
+        if(_health <= 0 )
         {
             Destroy(gameObject);
         }
