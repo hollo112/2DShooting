@@ -101,8 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686ead11dafb25346803f2f24a5c6f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 6
+  Damage: 60
   Direction: 0
-  SpeedValue: 4
   AngularSpeed: 9
   Radius: 0.5
 --- !u!60 &1471941956475115218

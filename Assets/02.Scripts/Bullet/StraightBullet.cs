@@ -5,7 +5,7 @@ public class StraightBullet : Bullet
     [Header("이동속도")]
     public float FirstSpeed = 1f;
     public float LastSpeed = 7f;
-
+    //
     [Header("가속시간")]
     public float AccerationTime = 1.2f;
     private float _elapsedTime = 0f;

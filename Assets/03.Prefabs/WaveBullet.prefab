@@ -101,8 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b245c5871b2df4386464334796e368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 6
+  Damage: 60
   Direction: 0
-  SpeedValue: 5
   ShakeAmplitude: 0.5
   ShakeFrequency: 7
 --- !u!60 &-6964294489352441884

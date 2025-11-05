@@ -4,9 +4,6 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class WaveBullet : Bullet
 {
-    [Header("이동 속도")]
-    public float SpeedValue = 5f;
-
     [Header("흔들림 속성")]
     public float ShakeAmplitude = 0.5f; // 흔들림 진폭
     public float ShakeFrequency = 5f;   // 흔들림 빈도
@@ -19,7 +16,6 @@ public class WaveBullet : Bullet
     {
         base.Start();
         _startPosition = transform.position;
-        Speed = SpeedValue;
     }
     public override void MoveBullet()
     {

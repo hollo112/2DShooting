@@ -2,9 +2,6 @@
 
 public class CircleBullet : Bullet
 {
-    [Header("이동 속도")]
-    public float SpeedValue = 5f;
-
     [Header("회전 속성")]
     public float AngularSpeed = 2f; // 회전 속도 (라디안/초)
     public float Radius = 2f;       // 원의 반지름
@@ -24,7 +21,7 @@ public class CircleBullet : Bullet
 
         // 기본이동
         Vector2 direction = GetDirection(Direction);
-        _centerPosition += direction * SpeedValue * Time.deltaTime;
+        _centerPosition += direction * Speed * Time.deltaTime;
 
         float x = _centerPosition.x + Mathf.Cos(_angle) * Radius;
         float y = _centerPosition.y + Mathf.Sin(_angle) * Radius;
