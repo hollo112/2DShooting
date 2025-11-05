@@ -44,4 +44,16 @@ public abstract class Bullet : MonoBehaviour
     }
 
     public abstract void MoveBullet();
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy") == false) return;
+        Destroy(this.gameObject);
+        Enemy enemy = other.GetComponent<Enemy>();
+        enemy.Health -= 30;
+        if(enemy.Health < 0)
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }
