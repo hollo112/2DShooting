@@ -52,16 +52,13 @@ public abstract class Bullet : MonoBehaviour
         DamageEnemy(other.gameObject);
     }
 
-    void DamageEnemy(GameObject target)
+    private void DamageEnemy(GameObject target)
     {
         if (target.CompareTag("Enemy") == false) return;
-        Destroy(this.gameObject);
+
         Enemy enemy = target.GetComponent<Enemy>();
         enemy.TakeDamage(Damage);
-
-        if (enemy.Health < 0)
-        {
-            Destroy(target.gameObject);
-        }
+        
+        Destroy(gameObject);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,8 +12,6 @@ public class Enemy : MonoBehaviour
         MoveEnemy();
     }
 
-    public float Health { get { return _health; } }
-
     public void MoveEnemy()
     {
         Vector2 direction = Vector2.down;
@@ -21,19 +20,26 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") == false) return;
-        Destroy(this.gameObject);
+        DamagePlayer(other.gameObject);
+    }
 
-        PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+    private void DamagePlayer(GameObject target)
+    {
+        if (target.CompareTag("Player") == false) return;
+
+        PlayerHealth playerHealth = target.GetComponent<PlayerHealth>();
         playerHealth.TakeDamage();
-        if(playerHealth.HealthCount <= 0 )
-        {
-            Destroy(other.gameObject);
-        }
+
+        Destroy(this.gameObject);
     }
 
     public void TakeDamage(float Damage)
     {
         _health -= Damage;
+
+        if (_health < 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
