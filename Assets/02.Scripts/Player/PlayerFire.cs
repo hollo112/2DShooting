@@ -8,10 +8,12 @@ public class PlayerFire : MonoBehaviour
     public GameObject SubBulletPrefab;
     public GameObject WaveBulletPrefab;
     public GameObject CircleBulletPrefab;
+    public GameObject HeartBulletPrefab;
     private GameObject _currentMainBulletPrefab;
 
     [Header("발사 위치")]
-    public Transform[] FirePosition;
+    public Transform FirePositionLeft;
+    public Transform FirePositionRight;
     public Transform[] SubFirePosition;
 
     [Header("발사 간격")]
@@ -29,6 +31,7 @@ public class PlayerFire : MonoBehaviour
         Straight = 1,
         Wave = 2,
         Circle = 3,
+        Heart = 4,
     }
 
     [Header("공격 모드")]
@@ -87,41 +90,62 @@ public class PlayerFire : MonoBehaviour
 
     void ChangeBulletType()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             CurrentBulletType = BulletType.Straight;
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             CurrentBulletType = BulletType.Wave;
         }
-        else if( Input.GetKeyDown(KeyCode.Alpha5))
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             CurrentBulletType = BulletType.Circle;
         }
-
-            switch (CurrentBulletType)
-            {
-                case BulletType.Straight:
-                    _currentMainBulletPrefab = StraightBulletPrefab;
-                    break;
-                case BulletType.Wave:
-                    _currentMainBulletPrefab = WaveBulletPrefab;
-                    break;
-                case BulletType.Circle:
-                    _currentMainBulletPrefab = CircleBulletPrefab;
-                    break;
-            }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            CurrentBulletType = BulletType.Heart;
+        }
+        switch (CurrentBulletType)
+        {
+            case BulletType.Straight:
+                _currentMainBulletPrefab = StraightBulletPrefab;
+                break;
+            case BulletType.Wave:
+                _currentMainBulletPrefab = WaveBulletPrefab;
+                break;
+            case BulletType.Circle:
+                _currentMainBulletPrefab = CircleBulletPrefab;
+                break;
+            case BulletType.Heart:
+                _currentMainBulletPrefab = HeartBulletPrefab;
+                break;
+        }
     }
 
     void MakeMainBullet()
     {
-        foreach (Transform pos in FirePosition)
-        {
-            Instantiate(_currentMainBulletPrefab, pos.position, Quaternion.identity);
-        }
+        GameObject leftBullet = Instantiate(_currentMainBulletPrefab, FirePositionLeft.position, Quaternion.identity);
+        ChangeBulletSide(leftBullet, false);
+        GameObject rightBullet = Instantiate(_currentMainBulletPrefab, FirePositionRight.position, Quaternion.identity);
+        ChangeBulletSide(rightBullet, true);
     }
 
+    void ChangeBulletSide(GameObject bullet, bool _isRight)
+    {
+        if(CurrentBulletType is BulletType.Heart)
+        {
+            HeartBullet heartBullet = bullet.GetComponent<HeartBullet>();
+            if(_isRight)
+            {
+                heartBullet._isRight = true;
+            }
+            else
+            {
+                heartBullet._isRight = false;
+            }
+        }
+    }
     void MakeSubBullet()
     {
         foreach (Transform pos in SubFirePosition)
