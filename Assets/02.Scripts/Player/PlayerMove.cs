@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using static UnityEngine.UI.Image;
 
 // Player 이동
 public class PlayerMove : MonoBehaviour

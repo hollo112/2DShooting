@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-
 public class EnemyAttack : MonoBehaviour
 {
     [Header("능력치")]

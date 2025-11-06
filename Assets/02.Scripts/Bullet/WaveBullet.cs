@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class WaveBullet : Bullet
 {

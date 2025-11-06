@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
 
+public enum EEnemyType
+{
+    Straight,
+    Trace,
+    Bounce,
+}
+
+
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Enemy 프리팹")]
-    public GameObject StraightEnemyPrefab;
-    public GameObject TraceEnemyPrefab;
+    public GameObject[] EnemyPrefabs;
 
     [Header("Enemy 생성 확률")]
-    public float StraightEnemyRandomValue = 0.7f;
-    public float TraceEnemyRandomValue = 0.3f;
+    public float[] EnemyRandomWeight;
 
     [Header("생성 주기")]
     public float MinRandomValue = 1f;
@@ -44,18 +50,23 @@ public class EnemySpawner : MonoBehaviour
 
     private void ChooseEnemyRandom()
     {
-        float random = Random.value;
-
-        GameObject spawningPrefab = null;
-
-        if (random < StraightEnemyRandomValue)
+        float total = 0f;
+        foreach (float enemyWeight in EnemyRandomWeight)
         {
-            spawningPrefab = StraightEnemyPrefab;
+            total += enemyWeight;
         }
-        else if(random < StraightEnemyRandomValue + TraceEnemyRandomValue)
+
+        float random = Random.Range(0f, total);
+        float cumulative = 0f;
+
+        for(int i = 0; i < EnemyRandomWeight.Length; i++)
         {
-            spawningPrefab = TraceEnemyPrefab;
-        }
-        Instantiate(spawningPrefab, transform.position, Quaternion.identity);
+            cumulative += EnemyRandomWeight[i];
+            if(random <= cumulative)
+            {
+                Instantiate(EnemyPrefabs[i], transform.position, Quaternion.identity);
+                return;
+            }
+        }      
     }
 }

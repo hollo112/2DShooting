@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-
 public class EnemyHealth : MonoBehaviour
 {
     [Header("체력")]
