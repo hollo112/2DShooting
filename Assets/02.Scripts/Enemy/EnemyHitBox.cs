@@ -13,7 +13,6 @@ public class EnemyHitBox : MonoBehaviour
 
     public void OnHit(float damage)
     {
-        Debug.Log("OnHit");
         float finalDamage = damage * (DamagePercent / 100f);
         _enemyHealth.TakeDamage(finalDamage);
     }

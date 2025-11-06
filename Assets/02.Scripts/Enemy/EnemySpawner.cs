@@ -56,7 +56,6 @@ public class EnemySpawner : MonoBehaviour
         {
             spawningPrefab = TraceEnemyPrefab;
         }
-        Debug.Log(spawningPrefab.name);
         Instantiate(spawningPrefab, transform.position, Quaternion.identity);
     }
 }

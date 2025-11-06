@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8876704166152806235}
   m_Layer: 0
   m_Name: HeartBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,8 +105,8 @@ MonoBehaviour:
   Damage: 60
   Direction: 0
   _isRight: 0
-  _depth: 3
-  _height: 1
+  Depth: 3
+  Height: 1
 --- !u!58 &8876704166152806235
 CircleCollider2D:
   m_ObjectHideFlags: 0

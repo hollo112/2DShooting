@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _health -= damage;
-        Debug.Log(_health);
+
         if(_health <= 0 )
         {
             Destroy(gameObject);
