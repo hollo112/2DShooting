@@ -3,7 +3,7 @@
 public class PlayerHealth : MonoBehaviour
 {
     [Header("능력치")]
-    [SerializeField] private float _health = 3;
+    private float _health = 3;
     
     public void TakeDamage(float damage)
     {

@@ -3,12 +3,13 @@
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Enemy 프리팹")]
-    public GameObject EnemyPrefab;
+    public GameObject StraightEnemy;
+    public GameObject FollowingEnemy;
 
     [Header("생성 주기")]
-    [SerializeField] private float _minRandomValue = 1f;
-    [SerializeField] private float _maxRandomValue = 3f;
-    private float SpawnCooltime;
+    public float MinRandomValue = 1f;
+    public float MaxRandomValue = 3f;
+    private float _spawnCooltime;
     private float _spawnTimer = 0f;
 
     private void Start()
@@ -16,25 +17,30 @@ public class EnemySpawner : MonoBehaviour
         SetCooltimeRandom();
     }
 
-    void Update()
+    private void Update()
     {
         _spawnTimer += Time.deltaTime;
-        if (_spawnTimer < SpawnCooltime)
+        if (_spawnTimer < _spawnCooltime)
         {
             return;
         }
 
-        GameObject enemyObject = Instantiate(EnemyPrefab);
-        enemyObject.transform.position = transform.position;
+       
        
         SetCooltimeRandom();
 
         _spawnTimer = 0f;
     }
 
-    void SetCooltimeRandom()
+    private void SetCooltimeRandom()
     {
-        float randomCooltime = UnityEngine.Random.Range(_minRandomValue, _maxRandomValue);
-        SpawnCooltime = randomCooltime;
+        float randomCooltime = UnityEngine.Random.Range(MinRandomValue, MaxRandomValue);
+        _spawnCooltime = randomCooltime;
+    }
+
+    private void ChooseEnemyRandom()
+    {
+        //GameObject enemyObject = Instantiate(EnemyPrefab);
+        //enemyObject.transform.position = transform.position;
     }
 }

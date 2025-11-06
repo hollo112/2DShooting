@@ -3,9 +3,9 @@
 public abstract class Bullet : MonoBehaviour
 {
     [Header("탄환 속도")]
-    [SerializeField]protected float Speed = 6f;
+    public float Speed = 6f;
     [Header("탄환 데미지")]
-    [SerializeField]protected float Damage = 60f;
+    public float Damage = 60f;
 
     private bool _isHit = false;
     public enum BulletDirection
@@ -50,17 +50,19 @@ public abstract class Bullet : MonoBehaviour
     public abstract void MoveBullet();
 
     public void OnTriggerEnter2D(Collider2D other)
-    {   
+    {
         DamageEnemy(other.gameObject);
         _isHit = true;
     }
 
     private void DamageEnemy(GameObject target)
     {
+        Debug.Log("Enemy1");
         if (_isHit) return;
+        Debug.Log("Enemy2");
         if (target.CompareTag("Enemy") == false) return;
-
-        EnemyHit enemyHit = target.GetComponent<EnemyHit>();
+        Debug.Log("Enemy3");
+        EnemyHitBox enemyHit = target.GetComponent<EnemyHitBox>();
         enemyHit.OnHit(Damage);
         
         Destroy(gameObject);

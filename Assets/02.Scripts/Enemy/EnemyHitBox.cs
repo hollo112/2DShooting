@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-public class EnemyHit : MonoBehaviour
+public class EnemyHitBox : MonoBehaviour
 {
     [Header("받는 데미지%")]
-    [SerializeField] private float DamagePercent = 100f; 
+    public float DamagePercent = 100f; 
     private Enemy _enemy;
 
     private void Awake()
@@ -13,6 +13,7 @@ public class EnemyHit : MonoBehaviour
 
     public void OnHit(float damage)
     {
+        Debug.Log("OnHit");
         float finalDamage = damage * (DamagePercent / 100f);
         _enemy.TakeDamage(finalDamage);
     }

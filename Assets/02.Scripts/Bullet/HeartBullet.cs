@@ -5,8 +5,9 @@ public class HeartBullet : Bullet
     [Header("하트방향")]
     public bool _isRight = true;
     [Header("하트속성")]
-    [SerializeField] private float _depth = 3f;
-    [SerializeField] private float _height = 1f;
+    public float Depth = 3f;
+    public float Height = 1f;
+
     private float _elapsedTime = 0f; // 누적 시간
     private Vector2 _startPosition;
     private bool _heartLow = false;
@@ -30,7 +31,7 @@ public class HeartBullet : Bullet
         float yBase = Mathf.Abs(inputY) + (_heartLow ? -sqrtPart : sqrtPart);
 
         // 깊이/높이 조정
-        float y = yBase * _depth - _height;
+        float y = yBase * Depth - Height;
         float x = _elapsedTime;
 
         // 상태 전환 조건
