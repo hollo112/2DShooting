@@ -3,8 +3,12 @@
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Enemy 프리팹")]
-    public GameObject StraightEnemy;
-    public GameObject FollowingEnemy;
+    public GameObject StraightEnemyPrefab;
+    public GameObject TraceEnemyPrefab;
+
+    [Header("Enemy 생성 확률")]
+    public float StraightEnemyRandomValue = 0.7f;
+    public float TraceEnemyRandomValue = 0.3f;
 
     [Header("생성 주기")]
     public float MinRandomValue = 1f;
@@ -25,8 +29,8 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-       
-       
+
+        ChooseEnemyRandom();
         SetCooltimeRandom();
 
         _spawnTimer = 0f;
@@ -40,7 +44,19 @@ public class EnemySpawner : MonoBehaviour
 
     private void ChooseEnemyRandom()
     {
-        //GameObject enemyObject = Instantiate(EnemyPrefab);
-        //enemyObject.transform.position = transform.position;
+        float random = Random.value;
+
+        GameObject spawningPrefab = null;
+
+        if (random < StraightEnemyRandomValue)
+        {
+            spawningPrefab = StraightEnemyPrefab;
+        }
+        else if(random < StraightEnemyRandomValue + TraceEnemyRandomValue)
+        {
+            spawningPrefab = TraceEnemyPrefab;
+        }
+        Debug.Log(spawningPrefab.name);
+        Instantiate(spawningPrefab, transform.position, Quaternion.identity);
     }
 }

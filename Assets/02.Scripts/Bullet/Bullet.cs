@@ -51,16 +51,19 @@ public abstract class Bullet : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.gameObject.name);
         DamageEnemy(other.gameObject);
         _isHit = true;
     }
 
     private void DamageEnemy(GameObject target)
     {
-        Debug.Log("Enemy1");
-        if (_isHit) return;
-        Debug.Log("Enemy2");
-        if (target.CompareTag("Enemy") == false) return;
+        if (target.CompareTag("EnemyHitBox") == false) return;
+        if (_isHit)
+        {   
+            Destroy(gameObject);
+            return;
+        }
         Debug.Log("Enemy3");
         EnemyHitBox enemyHit = target.GetComponent<EnemyHitBox>();
         enemyHit.OnHit(Damage);

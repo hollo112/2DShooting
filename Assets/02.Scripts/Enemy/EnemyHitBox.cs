@@ -4,17 +4,17 @@ public class EnemyHitBox : MonoBehaviour
 {
     [Header("받는 데미지%")]
     public float DamagePercent = 100f; 
-    private Enemy _enemy;
+    private EnemyHealth _enemyHealth;
 
     private void Awake()
     {
-        _enemy = GetComponentInParent<Enemy>();
+        _enemyHealth = GetComponentInParent<EnemyHealth>();
     }
 
     public void OnHit(float damage)
     {
         Debug.Log("OnHit");
         float finalDamage = damage * (DamagePercent / 100f);
-        _enemy.TakeDamage(finalDamage);
+        _enemyHealth.TakeDamage(finalDamage);
     }
 }
