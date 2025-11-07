@@ -17,7 +17,8 @@ public class PlayerFire : MonoBehaviour
     public Transform[] SubFirePosition;
 
     [Header("발사 간격")]
-    public float Cooltime = 0.6f;
+    private float _cooltime = 0.8f;
+    private const float _minCooltime = 0.3f;
     private float _fireTimer = 0f;
 
     public enum FireType
@@ -37,22 +38,22 @@ public class PlayerFire : MonoBehaviour
     [Header("공격 모드")]
     public FireType CurrentFireType = FireType.Auto; // 1: 자동, 2: 수동
     public BulletType CurrentBulletType = BulletType.Straight;
-    void Start()
+    private void Start()
     {
         
     }
 
-    void Update()
+    private void Update()
     {
         ChangeFireMode();
         ChangeBulletType();
         //FireBullet();
     }
 
-    void FireBullet()
+    private void FireBullet()
     {
         _fireTimer += Time.deltaTime;
-        if (_fireTimer < Cooltime)
+        if (_fireTimer < _cooltime)
         {
             return;
         }
@@ -63,7 +64,7 @@ public class PlayerFire : MonoBehaviour
         _fireTimer = 0f;
     }
 
-    void ChangeFireMode()
+    private void ChangeFireMode()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -88,7 +89,7 @@ public class PlayerFire : MonoBehaviour
         }
     }
 
-    void ChangeBulletType()
+    private void ChangeBulletType()
     {
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
@@ -123,7 +124,7 @@ public class PlayerFire : MonoBehaviour
         }
     }
 
-    void MakeMainBullet()
+    private void MakeMainBullet()
     {
         GameObject leftBullet = Instantiate(_currentMainBulletPrefab, FirePositionLeft.position, Quaternion.identity);
         ChangeBulletSide(leftBullet, false);
@@ -131,7 +132,7 @@ public class PlayerFire : MonoBehaviour
         ChangeBulletSide(rightBullet, true);
     }
 
-    void ChangeBulletSide(GameObject bullet, bool _isRight)
+    private void ChangeBulletSide(GameObject bullet, bool _isRight)
     {
         if(CurrentBulletType is BulletType.Heart)
         {
@@ -146,11 +147,17 @@ public class PlayerFire : MonoBehaviour
             }
         }
     }
-    void MakeSubBullet()
+    private void MakeSubBullet()
     {
         foreach (Transform pos in SubFirePosition)
         {
             Instantiate(SubBulletPrefab, pos.position, Quaternion.identity);
         }
+    }
+
+    public void FireSpeedUp(float value)
+    {
+        _cooltime -= value;
+        _cooltime = Mathf.Max(_cooltime, _minCooltime);
     }
 }

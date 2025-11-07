@@ -4,6 +4,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [Header("능력치")]
     private float _health = 3;
+    private const float _maxhealth = 3;
     
     public void TakeDamage(float damage)
     {
@@ -13,5 +14,11 @@ public class PlayerHealth : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void Heal(float healValue)
+    {
+        _health += healValue;
+        _health = Mathf.Min(_health, _maxhealth);
     }
 }

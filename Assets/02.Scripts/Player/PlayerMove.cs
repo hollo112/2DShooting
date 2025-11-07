@@ -5,10 +5,8 @@ public class PlayerMove : MonoBehaviour
 {
     // 필요 속성:
     [Header("능력치")]
-    public float Speed = 3f;    // 속력
-    
-    public float MaxSpeed = 10f;
-    public float MinSpeed = 1f;
+    private float _speed = 3f;    // 속력
+    private const float _maxSpeed = 6f; // 최고 속력
     public float SpeedMultiplier = 1.2f;    // Shift키 누르면 속도 배 상승
 
     [Header("원점 좌표")]
@@ -46,24 +44,24 @@ public class PlayerMove : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Speed++;
+            _speed++;
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            Speed--;    
+            _speed--;    
         }
 
-        Speed = Mathf.Clamp(Speed, MinSpeed, MaxSpeed); // 속도 범위 제한
+        //Speed = Mathf.Clamp(Speed, MinSpeed, MaxSpeed); // 속도 범위 제한
     }
     private void SpeedUpShift()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Speed *= SpeedMultiplier;
+            _speed *= SpeedMultiplier;
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            Speed /= SpeedMultiplier;
+            _speed /= SpeedMultiplier;
         }
     }
     private void TurnOnMovingOrigin()
@@ -81,7 +79,7 @@ public class PlayerMove : MonoBehaviour
     {
         Vector2 currentPosition = transform.position;
         Vector2 direction = GetMovementDirection(currentPosition);
-        Vector2 newPosition = currentPosition + direction * Speed * Time.deltaTime;
+        Vector2 newPosition = currentPosition + direction * _speed * Time.deltaTime;
 
         // 화면 밖으로 나가지 않도록 처리
         newPosition.x = WrapValue(newPosition.x, MinX, MaxX);
@@ -125,5 +123,12 @@ public class PlayerMove : MonoBehaviour
         }
 
         return newPosition;
+    }
+
+    // 플레이어 스피드업
+    public void MoveSpeedUp(float value)
+    {
+        _speed += value;
+        _speed = Mathf.Min(_speed, _maxSpeed);
     }
 }
