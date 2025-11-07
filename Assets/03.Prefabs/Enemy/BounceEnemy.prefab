@@ -68,7 +68,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.34316814, y: 0.00222373}
+  m_Offset: {x: 0.34139562, y: -0.00025773048}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -78,7 +78,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.31366372, y: 0.8739991}
+  m_Size: {x: 0.31011868, y: 0.8690362}
   m_EdgeRadius: 0
 --- !u!114 &4412812397382948501
 MonoBehaviour:
@@ -188,7 +188,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.016428053, y: 0.00057148933}
+  m_Offset: {x: 0.016428053, y: -0.00024044514}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -198,7 +198,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.334669, y: 0.875648}
+  m_Size: {x: 0.334669, y: 0.8685763}
   m_EdgeRadius: 0
 --- !u!114 &926778856071861950
 MonoBehaviour:
@@ -308,7 +308,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.3245566, y: 0.00092065334}
+  m_Offset: {x: -0.3245566, y: -0.0005657673}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -318,7 +318,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.3426727, y: 0.8749497}
+  m_Size: {x: 0.3426727, y: 0.86959887}
   m_EdgeRadius: 0
 --- !u!114 &2183696203382605013
 MonoBehaviour:
@@ -371,10 +371,11 @@ GameObject:
   - component: {fileID: 4319690631124052448}
   - component: {fileID: 2998661730030916143}
   - component: {fileID: 7534513154891515488}
-  - component: {fileID: 3966263680034150959}
+  - component: {fileID: 8723544277635595060}
   - component: {fileID: 1725513730386465434}
   - component: {fileID: 1089976491685958896}
   - component: {fileID: 3747819509220071669}
+  - component: {fileID: -2392606830474581704}
   m_Layer: 0
   m_Name: BounceEnemy
   m_TagString: Enemy
@@ -482,7 +483,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &3966263680034150959
+--- !u!61 &8723544277635595060
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -570,3 +571,24 @@ MonoBehaviour:
   MaxX: 2.4
   MinY: -5
   MaxY: 5
+--- !u!114 &-2392606830474581704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8562875156424057720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5f71c2fc40c79e40b934c59bd37c865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemPrefabs:
+  - {fileID: 7158317908782033662, guid: dca78b142931b194690bc6335adeb5e0, type: 3}
+  - {fileID: 1486261063042859638, guid: 52fa8fa0dce5ed34f8bd4108278684d1, type: 3}
+  - {fileID: 1858693928917085872, guid: 709dfdb13bdd6034e828ca752ce9059e, type: 3}
+  ItemRandomWeight:
+  - 70
+  - 20
+  - 10
+  DropPercent: 50

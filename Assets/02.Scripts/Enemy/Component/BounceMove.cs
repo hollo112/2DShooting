@@ -37,8 +37,7 @@ public class BounceMove : Movement
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Bullet") == true) { return; }
-
+        if(!collision.CompareTag("Enemy") && !collision.CompareTag("EnemyHitBox")) { return; }
         Vector2 normal = (transform.position - collision.transform.position).normalized;
         Bounce(normal);
     }

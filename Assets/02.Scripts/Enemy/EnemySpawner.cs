@@ -50,19 +50,19 @@ public class EnemySpawner : MonoBehaviour
 
     private void ChooseEnemyRandom()
     {
-        float total = 0f;
+        float totalWeight = 0f;
         foreach (float enemyWeight in EnemyRandomWeight)
         {
-            total += enemyWeight;
+            totalWeight += enemyWeight;
         }
 
-        float random = Random.Range(0f, total);
-        float cumulative = 0f;
+        float randomValue = Random.Range(0f, totalWeight);
+        float cumulativeWeight = 0f;
 
         for(int i = 0; i < EnemyRandomWeight.Length; i++)
         {
-            cumulative += EnemyRandomWeight[i];
-            if(random <= cumulative)
+            cumulativeWeight += EnemyRandomWeight[i];
+            if(randomValue <= cumulativeWeight)
             {
                 Instantiate(EnemyPrefabs[i], transform.position, Quaternion.identity);
                 return;

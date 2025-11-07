@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 1725513730386465434}
   - component: {fileID: 1089976491685958896}
   - component: {fileID: 7342562313837480821}
+  - component: {fileID: -6667803667937909384}
   m_Layer: 0
   m_Name: TraceEnemy
   m_TagString: Enemy
@@ -512,7 +513,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -566,3 +567,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 2
+--- !u!114 &-6667803667937909384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8562875156424057720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5f71c2fc40c79e40b934c59bd37c865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemPrefabs:
+  - {fileID: 7158317908782033662, guid: dca78b142931b194690bc6335adeb5e0, type: 3}
+  - {fileID: 1486261063042859638, guid: 52fa8fa0dce5ed34f8bd4108278684d1, type: 3}
+  - {fileID: 1858693928917085872, guid: 709dfdb13bdd6034e828ca752ce9059e, type: 3}
+  ItemRandomWeight:
+  - 70
+  - 20
+  - 10
+  DropPercent: 50

@@ -3,6 +3,12 @@ public class EnemyHealth : MonoBehaviour
 {
     [Header("체력")]
     private float _health = 100f;
+    private EnemyDropItem _enemyDropItem;
+
+    private void Awake()
+    {
+        _enemyDropItem = GetComponent<EnemyDropItem>();
+    }
 
     public void TakeDamage(float Damage)
     {
@@ -10,7 +16,17 @@ public class EnemyHealth : MonoBehaviour
 
         if (_health < 0)
         {
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        if( _enemyDropItem != null )
+        {
+            _enemyDropItem.DropItem();
+        }
+
+        Destroy(gameObject);
     }
 }
