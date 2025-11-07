@@ -4,9 +4,9 @@ public class EnemyDropItem : MonoBehaviour
 {
     [Header("아이템 프리팹")]
     public GameObject[] ItemPrefabs;
-    [Header("아이템별 드랍 확률")]
+    [Header("아이템별 드랍 확률(가중치)")]
     public float[] ItemRandomWeight;
-    [Header("아이템 드랍 확률")]
+    [Header("아이템 드랍 확률(%)")]
     public float DropPercent = 50f;
 
 
