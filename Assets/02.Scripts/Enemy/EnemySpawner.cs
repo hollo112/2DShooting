@@ -64,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
             cumulativeWeight += EnemyRandomWeight[i];
             if(randomValue <= cumulativeWeight)
             {
-                Instantiate(EnemyPrefabs[i], transform.position, Quaternion.identity);
+                Instantiate(EnemyPrefabs[i], transform.position, Quaternion.identity);             
                 return;
             }
         }      

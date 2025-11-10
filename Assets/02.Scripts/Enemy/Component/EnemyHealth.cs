@@ -10,6 +10,14 @@ public class EnemyHealth : MonoBehaviour
         _enemyDropItem = GetComponent<EnemyDropItem>();
     }
 
+    private void Start()
+    {
+        if (EnemyManager.Instance != null)
+        {
+            EnemyManager.Instance.RegisterEnemy(gameObject);
+        }
+    }
+
     public void TakeDamage(float Damage)
     {
         _health -= Damage;
@@ -28,5 +36,10 @@ public class EnemyHealth : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        EnemyManager.Instance.UnregisterEnemy(gameObject);
     }
 }

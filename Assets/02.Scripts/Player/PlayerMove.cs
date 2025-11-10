@@ -5,12 +5,14 @@ public class PlayerMove : MonoBehaviour
 {
     // 필요 속성:
     [Header("능력치")]
-    private float _speed = 3f;    // 속력
+    private float _speed = 2f;          // 속력
     private const float _maxSpeed = 6f; // 최고 속력
+    private const float _minSpeed = 1f;
     public float SpeedMultiplier = 1.2f;    // Shift키 누르면 속도 배 상승
 
     [Header("원점 좌표")]
-    private Vector2 _originPosition = new Vector2(0f, -2.5f); // 원점 좌표
+    private Vector2 _originPosition = new Vector2(0f, -2.5f); 
+    public Vector2 OriginPosition => _originPosition;
 
     [Header("이동 범위")]
     public float MinX = -2.4f;
@@ -18,96 +20,64 @@ public class PlayerMove : MonoBehaviour
     public float MinY = -5f;
     public float MaxY = 0f;
 
-    private bool _isReturningToOrigin = false; // 원점으로 이동 중인지 여부
+    private bool _isReturningToOrigin = false;
 
-    // 게임 오브젝트가 게임을 시작할 때
     private void Start()
     {
-        _originPosition = transform.position; // 현재 위치를 원점으로 설정
+        _originPosition = transform.position; 
     }
 
-    // 게임 오브젝트가 게임을 시작 후 프레임마다
-    private void Update()
+    public void TurnOnMovingOrigin(bool isMovingOrigin)
     {
-        HandleInput();
-        MovePlayer();
-    }
-
-    private void HandleInput()
-    {
-        ChangeSpeed();
-        SpeedUpShift();
-        TurnOnMovingOrigin();
-    }
-
-    private void ChangeSpeed()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            _speed++;
-        }
-        else if (Input.GetKeyDown(KeyCode.E))
-        {
-            _speed--;    
-        }
-
-        //Speed = Mathf.Clamp(Speed, MinSpeed, MaxSpeed); // 속도 범위 제한
-    }
-    private void SpeedUpShift()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            _speed *= SpeedMultiplier;
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            _speed /= SpeedMultiplier;
-        }
-    }
-    private void TurnOnMovingOrigin()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (isMovingOrigin)
         {
             _isReturningToOrigin = true;
         }
-        else if (Input.GetKeyUp(KeyCode.R))
+        else
         {
             _isReturningToOrigin = false;
         }
     }
-    private void MovePlayer()
+    public void MovePlayer(Vector2 direction)
     {
+        if(_isReturningToOrigin)
+        {
+            direction = ReturnToOrigin();
+        }
         Vector2 currentPosition = transform.position;
-        Vector2 direction = GetMovementDirection(currentPosition);
         Vector2 newPosition = currentPosition + direction * _speed * Time.deltaTime;
 
-        // 화면 밖으로 나가지 않도록 처리
         newPosition.x = WrapValue(newPosition.x, MinX, MaxX);
         newPosition.y = Mathf.Clamp(newPosition.y, MinY, MaxY);
 
         transform.position = newPosition;
     }
-
-    private Vector2 GetInputDirection()
+    public void ChangeSpeedUp(bool speedUp)
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-        Vector2 inputDirection = new Vector2(h, v).normalized;
-
-        return inputDirection;
-    }
-
-    private Vector2 GetMovementDirection(Vector2 currentPosition)
-    {
-        if (_isReturningToOrigin)
+        if(speedUp)
         {
-            Vector2 directionToOrigin = _originPosition - currentPosition;
-            return directionToOrigin.normalized;
+            _speed++;
         }
         else
         {
-            return GetInputDirection();
+            _speed--;
         }
+
+        _speed = Mathf.Clamp(_speed, _minSpeed, _maxSpeed);
+    }
+    public void BoostSpeed(bool isBoosting)
+    {
+        if (isBoosting)
+            _speed *= SpeedMultiplier;
+        else
+            _speed /= SpeedMultiplier;
+    }
+
+    private Vector2 ReturnToOrigin()
+    {
+        Vector2 currentPosition = transform.position;
+        Vector2 directionToOrigin = _originPosition - currentPosition;
+        return directionToOrigin.normalized;
     }
 
     // 플레이어의 x좌표를 화면 밖으로 나가면 반대편에서 나오도록 처리
@@ -125,7 +95,6 @@ public class PlayerMove : MonoBehaviour
         return newPosition;
     }
 
-    // 플레이어 스피드업
     public void MoveSpeedUp(float value)
     {
         _speed += value;
