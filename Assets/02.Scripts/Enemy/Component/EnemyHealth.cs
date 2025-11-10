@@ -5,9 +5,12 @@ public class EnemyHealth : MonoBehaviour
     private float _health = 100f;
     private EnemyDropItem _enemyDropItem;
 
+    private Animator _animator;
+
     private void Awake()
     {
         _enemyDropItem = GetComponent<EnemyDropItem>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -20,6 +23,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float Damage)
     {
+        _animator.SetTrigger("Hit");
         _health -= Damage;
 
         if (_health < 0)
