@@ -22,9 +22,12 @@ public class PlayerMove : MonoBehaviour
 
     private bool _isReturningToOrigin = false;
 
+    private Animator _animator;
+
     private void Start()
     {
         _originPosition = transform.position; 
+        _animator = GetComponent<Animator>();
     }
 
     public void TurnOnMovingOrigin(bool isMovingOrigin)
@@ -44,6 +47,8 @@ public class PlayerMove : MonoBehaviour
         {
             direction = ReturnToOrigin();
         }
+        _animator.SetInteger("x", (int)direction.x);
+
         Vector2 currentPosition = transform.position;
         Vector2 newPosition = currentPosition + direction * _speed * Time.deltaTime;
 
