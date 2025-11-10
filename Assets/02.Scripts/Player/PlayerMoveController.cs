@@ -11,7 +11,7 @@ public class PlayerMoveController : MonoBehaviour
     private PlayerMove _move;
     private PlayerManualMove _manual;
     private PlayerAutoMove _auto;
-    private EControlMode _mode = EControlMode.Manual;
+    private EControlMode _mode = EControlMode.Auto;
 
     private void Awake()
     {
