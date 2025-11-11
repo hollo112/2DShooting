@@ -7,16 +7,17 @@ public class BackgroundScroll : MonoBehaviour
     // -머터리얼
     // -스크롤 속도
 
-    private Material _material;
+    public Material  Material;
+    public float ScrollSpeed = 0.1f;
 
-    void Start()
+    private void Start()
     {
-        _material = GetComponent<Material>();    
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        Vector2 direction = Vector2.up;
+        Material.mainTextureOffset += direction * ScrollSpeed * Time.deltaTime;
     }
 }
