@@ -30,7 +30,6 @@ standards:
       variable: "camelCase"
       private_field: "_camelCase"
       constant: "PascalCase"
-      enum: "EPascalCase"  # E prefix for enums
     
     patterns:
       - "Use Unity lifecycle methods appropriately (Awake, Start, Update, etc.)"
@@ -39,7 +38,6 @@ standards:
       - "Use GetComponent<T>() wisely and cache references"
       - "Implement IDisposable for cleanup when needed"
       - "Use coroutines for time-based operations"
-      - "Prefix enum types with 'E' (e.g., EGameState, EPlayerType)"
 
 # AI Assistant Context
 context:
@@ -63,6 +61,13 @@ context:
     - "Use coroutines instead of Update() for delayed actions"
     - "Cache component references in Awake() or Start()"
     - "Use layers and tags for organization"
+
+# Documentation
+documentation:
+  style: "XML"
+  required_for:
+    - "public classes"
+    - "public methods"
 
 # Performance Considerations
 performance:
@@ -89,6 +94,5 @@ custom_instructions: |
   6. Use Unity's built-in systems when available
   7. Always include access modifiers for all methods
   8. Use PascalCase for constants
-  9. Prefix all enum types with 'E' (e.g., EGameState, EWeaponType)
-  10. Use [SerializeField] only for uGUI components
-  11. Provide Korean comments for better understanding (한국어 주석 포함)
+  9. Use [SerializeField] only for uGUI components
+  10. Provide Korean comments for better understanding (한국어 주석 포함)
