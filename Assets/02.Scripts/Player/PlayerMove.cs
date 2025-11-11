@@ -17,7 +17,7 @@ public class PlayerMove : MonoBehaviour
     [Header("이동 범위")]
     public float MinX = -2.4f;
     public float MaxX = 2.4f;
-    public float MinY = -5f;
+    public float MinY = -4.5f;
     public float MaxY = 0f;
 
     private bool _isReturningToOrigin = false;
