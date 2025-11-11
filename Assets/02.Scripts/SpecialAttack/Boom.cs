@@ -40,7 +40,9 @@ public class Boom : MonoBehaviour
     {
         if (target.CompareTag("Enemy") == false) return;
 
-        EnemyHealth enemyHit = target.GetComponent<EnemyHealth>();
-        enemyHit.TakeDamage(_damage);
+        EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
+        if (enemyHealth == null) return;
+
+        enemyHealth.TakeDamage(_damage);
     }
 }
