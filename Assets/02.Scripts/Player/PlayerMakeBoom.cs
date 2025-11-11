@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class PlayerBoom : MonoBehaviour
+public class PlayerMakeBoom : MonoBehaviour
 {
     [Header("생성 위치")]
     private float _positionX = 0f;
-    private float _positionY = -2.5f;
+    private float _positionY = 0f;
 
     [Header("Boom 프리팹")]
     public GameObject BoomPrefab;
