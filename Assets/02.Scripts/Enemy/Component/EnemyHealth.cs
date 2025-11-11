@@ -46,6 +46,11 @@ public class EnemyHealth : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void DieImmediately()
+    {
+        TakeDamage(_health);
+    }
+
     private void OnDestroy()
     {
         EnemyManager.Instance.UnregisterEnemy(gameObject);

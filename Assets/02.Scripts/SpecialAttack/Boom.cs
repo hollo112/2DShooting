@@ -5,7 +5,6 @@ public class Boom : MonoBehaviour
     [Header("파티클 프리팹")]
     public GameObject ParticlePrefab;
 
-    private float _damage = 100f;
     private float _timer = 3f;
     private GameObject _boomInstance;
 
@@ -43,6 +42,6 @@ public class Boom : MonoBehaviour
         EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
         if (enemyHealth == null) return;
 
-        enemyHealth.TakeDamage(_damage);
+        enemyHealth.DieImmediately();
     }
 }
