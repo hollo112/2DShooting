@@ -4,8 +4,10 @@ public class EnemyHealth : MonoBehaviour
     [Header("체력")]
     private float _health = 100f;
     private EnemyDropItem _enemyDropItem;
-
     private Animator _animator;
+
+    [Header("폭발 프리팹")]
+    public GameObject ExplosionPrefab;
 
     private void Awake()
     {
@@ -39,11 +41,18 @@ public class EnemyHealth : MonoBehaviour
             _enemyDropItem.DropItem();
         }
 
+        MakeExplosionEffect();
+
         Destroy(gameObject);
     }
 
     private void OnDestroy()
     {
         EnemyManager.Instance.UnregisterEnemy(gameObject);
+    }
+
+    private void MakeExplosionEffect()
+    {
+        Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
     }
 }
