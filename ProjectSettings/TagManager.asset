@@ -45,11 +45,11 @@ TagManager:
   - name: Background
     uniqueID: 149503229
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Particle
     uniqueID: 3941575839
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   m_RenderingLayers:
   - Default
