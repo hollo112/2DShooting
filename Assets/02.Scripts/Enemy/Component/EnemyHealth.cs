@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
 
     private EnemyDropItem _enemyDropItem;
     private Animator _animator;
+
     [Header("폭발 프리팹")]
     public GameObject ExplosionPrefab;
 
