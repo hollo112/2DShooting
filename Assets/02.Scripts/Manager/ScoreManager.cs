@@ -9,11 +9,16 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private Text _currentScoreTextUI;
     private int _currentScore = 0;
 
+    private const string ScoreKey = "Score";
+
     private void Start()
     {
+        Load();
+
         Refresh();
     }
 
+    // 하나의 메서드는 한 가지 일만 잘 하면된다 -> AddScore는 점수 올리기만. 나머지는 다른 함수로
     public void AddScore(int score)
     {
         if (score <= 0) return;
@@ -21,11 +26,29 @@ public class ScoreManager : MonoBehaviour
         _currentScore += score;
 
         Refresh();
+
+        Save();
     }
 
     private void Refresh()
-    {
-         
+    { 
         _currentScoreTextUI.text = $"현재 점수: {_currentScore:N0}";
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha9))
+        {
+        }
+    }
+   
+    private void Save()
+    {
+        PlayerPrefs.SetInt(ScoreKey, _currentScore);
+    }
+
+    private void Load()
+    {
+        _currentScore = PlayerPrefs.GetInt(ScoreKey, 0);
     }
 }
