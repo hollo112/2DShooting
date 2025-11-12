@@ -7,7 +7,9 @@ public class ScoreManager : MonoBehaviour
     // 응집도 : '데이터'와 '데이터를 조작하는 로직'이 얼마나 잘 모여있나
     // 응집도를 높이고, 필요한 것만 외부에 공개하는 것을 '캡슐화'
     [SerializeField] private Text _currentScoreTextUI;
+    [SerializeField] private Text _higestScoreTextUI;
     private int _currentScore = 0;
+    private int _higestScore = 0; 
 
     private const string ScoreKey = "Score";
 
@@ -31,7 +33,8 @@ public class ScoreManager : MonoBehaviour
     }
 
     private void Refresh()
-    { 
+    {
+        _higestScoreTextUI.text = $"최고 점수: {_higestScore:N0}";
         _currentScoreTextUI.text = $"현재 점수: {_currentScore:N0}";
     }
 
@@ -39,16 +42,21 @@ public class ScoreManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Alpha9))
         {
+            Save();
         }
+
     }
    
     private void Save()
     {
-        PlayerPrefs.SetInt(ScoreKey, _currentScore);
+        if (_currentScore > _higestScore)
+        {
+            PlayerPrefs.SetInt(ScoreKey, _currentScore);
+        }     
     }
 
     private void Load()
     {
-        _currentScore = PlayerPrefs.GetInt(ScoreKey, 0);
+        _higestScore = PlayerPrefs.GetInt(ScoreKey, 0);
     }
 }
