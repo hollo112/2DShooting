@@ -20,6 +20,9 @@ public class PlayerFire : MonoBehaviour
     private const float _minCooltime = 0.3f;
     private float _fireTimer = 0f;
 
+    [Header("사운드")]
+    public AudioSource FireSound;
+
     public enum FireType
     {
         Auto = 1,
@@ -56,9 +59,10 @@ public class PlayerFire : MonoBehaviour
         {
             return;
         }
-
         MakeMainBullet();
         MakeSubBullet();
+
+        FireSound.Play();
 
         _fireTimer = 0f;
     }
