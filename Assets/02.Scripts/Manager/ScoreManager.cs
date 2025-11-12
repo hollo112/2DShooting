@@ -4,6 +4,8 @@ using DG.Tweening;
 
 public class ScoreManager : MonoBehaviour
 {
+    public static ScoreManager Instance {get; private set;}
+
     [Header("Pop속성")]
     public float ScaleSize = 1.4f;
     public float ScaleTime = 0.2f;
@@ -16,6 +18,16 @@ public class ScoreManager : MonoBehaviour
     private int _highScore = 0;
 
     private const string ScoreKey = "Score";
+
+    private void Awake()
+    {
+        if(Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     private void Start()
     {

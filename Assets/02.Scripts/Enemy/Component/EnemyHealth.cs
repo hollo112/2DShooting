@@ -45,9 +45,7 @@ public class EnemyHealth : MonoBehaviour
 
         MakeExplosionEffect();
 
-        ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
-        scoreManager.AddScore(_score);
-       
+        ScoreManager.Instance.AddScore( _score );
 
         Destroy(gameObject);
     }
