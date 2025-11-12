@@ -3,9 +3,11 @@ public class EnemyHealth : MonoBehaviour
 {
     [Header("체력")]
     private float _health = 100f;
+    [Header("점수")]
+    private int _score = 100;
+
     private EnemyDropItem _enemyDropItem;
     private Animator _animator;
-
     [Header("폭발 프리팹")]
     public GameObject ExplosionPrefab;
 
@@ -42,6 +44,8 @@ public class EnemyHealth : MonoBehaviour
         }
 
         MakeExplosionEffect();
+
+        ScoreManager.Instance.AddScore( _score );
 
         Destroy(gameObject);
     }
