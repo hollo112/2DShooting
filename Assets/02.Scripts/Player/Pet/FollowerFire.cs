@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class FollowerFire : MonoBehaviour
 {
-    [Header("총알 프리팹")]
-    public GameObject BulletPrefab;
 
     [Header("발사 위치")]
     public Transform FirePositionLeft;
@@ -35,7 +34,7 @@ public class FollowerFire : MonoBehaviour
 
     private void MakeBullet()
     {
-        GameObject Bullet = Instantiate(BulletPrefab, FirePositionLeft.position, Quaternion.identity);
+        BulletFactory.Instance.MakeBullet(EBulletType.PetBullet, FirePositionLeft.position);
     }
 
     private void RandomCooltime()

@@ -411,6 +411,56 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &307954908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 307954910}
+  - component: {fileID: 307954909}
+  m_Layer: 0
+  m_Name: BulletFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &307954909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307954908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e3ebae5493e3241a0a1e135486cb8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StraightBulletPrefab: {fileID: 6936277071117357415, guid: 389fc8044fc52b642a04c147963a0734, type: 3}
+  SubBulletPrefab: {fileID: 376778245108501891, guid: 746cb460cec75414b80a0406c2a2e6bc, type: 3}
+  WaveBulletPrefab: {fileID: 2018527901516440708, guid: 421b62e3ba3502143a11fd494453edaa, type: 3}
+  CircleBulletPrefab: {fileID: 6880395558714892525, guid: c97f2c9ca10502a40a1b2bdd92901963, type: 3}
+  HeartBulletPrefab: {fileID: 9072805467742112915, guid: cc46e01b3c1a46840890733fdde7907e, type: 3}
+  PetBulletPrefab: {fileID: 6936277071117357415, guid: a1c4596d20ae69946b06da6a6e5310dc, type: 3}
+--- !u!4 &307954910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307954908}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410282896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,11 +1116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3839c298a65e39418ce291f2dd5ce83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StraightBulletPrefab: {fileID: 6936277071117357415, guid: 389fc8044fc52b642a04c147963a0734, type: 3}
-  SubBulletPrefab: {fileID: 376778245108501891, guid: 746cb460cec75414b80a0406c2a2e6bc, type: 3}
-  WaveBulletPrefab: {fileID: 2018527901516440708, guid: 421b62e3ba3502143a11fd494453edaa, type: 3}
-  CircleBulletPrefab: {fileID: 6880395558714892525, guid: c97f2c9ca10502a40a1b2bdd92901963, type: 3}
-  HeartBulletPrefab: {fileID: 9072805467742112915, guid: cc46e01b3c1a46840890733fdde7907e, type: 3}
   FirePositionLeft: {fileID: 1286591350}
   FirePositionRight: {fileID: 1817414297}
   SubFirePosition:
@@ -1078,7 +1123,7 @@ MonoBehaviour:
   - {fileID: 684161511}
   FireSound: {fileID: 1032998987}
   CurrentFireType: 1
-  CurrentBulletType: 1
+  CurrentBulletType: 0
 --- !u!50 &703358265
 Rigidbody2D:
   serializedVersion: 5
@@ -2723,3 +2768,4 @@ SceneRoots:
   - {fileID: 1964781514}
   - {fileID: 1124495472}
   - {fileID: 811583670}
+  - {fileID: 307954910}
