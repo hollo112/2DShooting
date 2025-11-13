@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour
     // 응집도를 높여라
     // 응집도 : '데이터'와 '데이터를 조작하는 로직'이 얼마나 잘 모여있나
     // 응집도를 높이고, 필요한 것만 외부에 공개하는 것을 '캡슐화'
+    [Header("UI")]
     [SerializeField] private Text _currentScoreTextUI;
     [SerializeField] private Text _highScoreTextUI;
     private int _currentScore = 0;
@@ -61,19 +62,16 @@ public class ScoreManager : MonoBehaviour
     {
         if (_currentScore > _highScore)
         {
-            PopText(_highScoreTextUI);
             _highScore = _currentScore;
+            UserDataManager.Data.Score = _highScore;
+            PopText(_highScoreTextUI);
         }
     }
     private void PopText(Text textUI)
     {
-        // 처음 크기(1)으로 돌려놓고
         textUI.transform.localScale = Vector3.one;
 
-        // 커졌다가 다시 돌아오는 시퀀스
-        textUI.transform
-            .DOScale(ScaleSize, ScaleTime)      
-            .SetEase(Ease.OutBack)              
+        textUI.transform.DOScale(ScaleSize, ScaleTime).SetEase(Ease.OutBack)              
             .OnComplete(() =>                   
             {
                 textUI.transform.DOScale(1.0f, 0.2f)
@@ -90,10 +88,7 @@ public class ScoreManager : MonoBehaviour
    
     private void Save()
     {
-        if (_currentScore >= _highScore)
-        {
-            PlayerPrefs.SetInt(ScoreKey, _currentScore);
-        }     
+        UserDataManager.Save();
     }
 
     private void ResetHighScore()
@@ -105,6 +100,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Load()
     {
-        _highScore = PlayerPrefs.GetInt(ScoreKey, 0);
+        UserDataManager.Load();
+        _highScore = UserDataManager.Data.Score;
     }
 }

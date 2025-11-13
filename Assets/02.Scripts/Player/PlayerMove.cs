@@ -57,6 +57,7 @@ public class PlayerMove : MonoBehaviour
 
         transform.position = newPosition;
     }
+
     public void ChangeSpeedUp(bool speedUp)
     {
         if(speedUp)
