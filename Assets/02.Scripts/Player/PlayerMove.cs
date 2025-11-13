@@ -6,6 +6,7 @@ public class PlayerMove : MonoBehaviour
     // 필요 속성:
     [Header("능력치")]
     private float _speed = 2f;          // 속력
+    public float Speed=> _speed;
     private const float _maxSpeed = 6f; // 최고 속력
     private const float _minSpeed = 1f;
     public float SpeedMultiplier = 1.2f;    // Shift키 누르면 속도 배 상승
