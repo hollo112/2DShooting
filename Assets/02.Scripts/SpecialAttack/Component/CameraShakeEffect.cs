@@ -9,7 +9,7 @@ public class CameraShakeEffect : MonoBehaviour
     public AnimationCurve ShakeCurve = AnimationCurve.Linear(0, 1, 1, 0); 
     private Camera _mainCamera;
 
-    private Vector3 _originalPos;
+    private Vector3 _originalPos = new Vector3(0, 0, -10);
     private Coroutine _shakeRoutine;
 
     private void Start()
@@ -20,13 +20,15 @@ public class CameraShakeEffect : MonoBehaviour
     public void Shake()
     {
         if (_shakeRoutine != null)
+        {
             StopCoroutine(_shakeRoutine);
+            _mainCamera.transform.localPosition = _originalPos;
+        }
         _shakeRoutine = StartCoroutine(ShakeCamera());
     }
 
     private IEnumerator ShakeCamera()
     {
-        _originalPos = _mainCamera.transform.localPosition;
         float elapsed = 0f;
 
         while (elapsed < Duration)
