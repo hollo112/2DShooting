@@ -1,18 +1,7 @@
 ﻿using UnityEngine;
 
-public enum EEnemyType
-{
-    Straight,
-    Trace,
-    Bounce,
-}
-
-
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("Enemy 프리팹")]
-    public GameObject[] EnemyPrefabs;
-
     [Header("Enemy 생성 확률")]
     public float[] EnemyRandomWeight;
 
@@ -64,9 +53,25 @@ public class EnemySpawner : MonoBehaviour
             cumulativeWeight += EnemyRandomWeight[i];
             if(randomValue <= cumulativeWeight)
             {
-                Instantiate(EnemyPrefabs[i], transform.position, Quaternion.identity);             
+                EEnemyType enemyType = GetEnemyType(i);
+                EnemyFactory.Instance.MakeEnemy(enemyType, transform.position);      
                 return;
             }
         }      
+    }
+
+    private EEnemyType GetEnemyType(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return EEnemyType.Straight;
+            case 1:
+                return EEnemyType.Trace;
+            case 2:
+                return EEnemyType.Bounce;
+            default:
+                return EEnemyType.None;
+        }
     }
 }

@@ -106,7 +106,7 @@ public class PlayerFire : MonoBehaviour
     {
         foreach (Transform pos in SubFirePosition)
         {
-            BulletFactory.Instance.MakeBullet(EBulletType.SubBullet, pos.position);
+            BulletFactory.Instance.MakeBullet(EBulletType.SubBullet, pos.position, false);
         }
     }
 

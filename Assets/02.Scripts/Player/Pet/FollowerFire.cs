@@ -34,7 +34,7 @@ public class FollowerFire : MonoBehaviour
 
     private void MakeBullet()
     {
-        BulletFactory.Instance.MakeBullet(EBulletType.PetBullet, FirePositionLeft.position);
+        BulletFactory.Instance.MakeBullet(EBulletType.PetBullet, FirePositionLeft.position, false);
     }
 
     private void RandomCooltime()

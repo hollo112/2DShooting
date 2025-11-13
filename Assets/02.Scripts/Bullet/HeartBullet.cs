@@ -42,7 +42,7 @@ public class HeartBullet : Bullet
         }
         else if (_heartLow && _elapsedTime <= 0f)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             return;
         }
 
