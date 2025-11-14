@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -9,17 +10,15 @@ public class ScoreManager : MonoBehaviour
     [Header("Pop속성")]
     public float ScaleSize = 1.4f;
     public float ScaleTime = 0.2f;
-    // 응집도를 높여라
-    // 응집도 : '데이터'와 '데이터를 조작하는 로직'이 얼마나 잘 모여있나
-    // 응집도를 높이고, 필요한 것만 외부에 공개하는 것을 '캡슐화'
     [Header("UI")]
     [SerializeField] private Text _currentScoreTextUI;
     [SerializeField] private Text _highScoreTextUI;
     private int _currentScore = 0;
     private int _highScore = 0;
-
     private const string ScoreKey = "Score";
 
+    public static event Action<int> OnScoreChanged;
+    
     private void Awake()
     {
         if(Instance != null && Instance != this)
@@ -57,6 +56,8 @@ public class ScoreManager : MonoBehaviour
         UpdateHighScore();
         PopText(_currentScoreTextUI);
         Refresh();
+        
+        OnScoreChanged?.Invoke(_currentScore);
     }
     private void UpdateHighScore()
     {

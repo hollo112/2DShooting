@@ -3,8 +3,8 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [Header("체력")]
-    private float _maxHealth = 100f;
-    private float _health = 100f;
+    [SerializeField] float _maxHealth = 100f;
+    private float _health;
     [Header("점수")]
     private int _score = 100;
 
@@ -37,7 +37,6 @@ public class EnemyHealth : MonoBehaviour
     {
         _animator.SetTrigger("Hit");
         _health -= Damage;
-        Debug.Log(_health);
         if (_health <= 0)
         {
             Die();

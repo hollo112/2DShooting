@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
     public float MaxRandomValue = 3f;
     private float _spawnCooltime;
     private float _spawnTimer = 0f;
-
+    private bool _canSpawn = true;
     private void Start()
     {
         SetCooltimeRandom();
@@ -19,18 +19,29 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         _spawnTimer += Time.deltaTime;
-        if (_spawnTimer < _spawnCooltime)
-        {
-            return;
-        }
-
-
+        if (_spawnTimer < _spawnCooltime)   {return;}
+        if(!_canSpawn)  {return;}
+        
         ChooseEnemyRandom();
         SetCooltimeRandom();
 
         _spawnTimer = 0f;
     }
+    private void OnEnable()
+    {
+        BossSpawner.OnBossSpawned += StopSpawn;
+    }
 
+    private void OnDisable()
+    {
+        BossSpawner.OnBossSpawned -= StopSpawn;
+    }
+
+    private void StopSpawn()
+    {
+        _canSpawn = false;
+    }
+    
     private void SetCooltimeRandom()
     {
         float randomCooltime = UnityEngine.Random.Range(MinRandomValue, MaxRandomValue);

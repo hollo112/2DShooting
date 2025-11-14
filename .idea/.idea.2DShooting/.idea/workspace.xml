@@ -13,6 +13,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/02.Scripts/Enemy/Boss/IBossPattern.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -130,7 +133,8 @@
       <workItem from="1763010127380" duration="359000" />
       <workItem from="1763011560378" duration="569000" />
       <workItem from="1763014371562" duration="3860000" />
-      <workItem from="1763018273401" duration="3701000" />
+      <workItem from="1763018273401" duration="8237000" />
+      <workItem from="1763079812887" duration="4747000" />
     </task>
     <servers />
   </component>

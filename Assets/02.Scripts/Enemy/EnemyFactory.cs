@@ -7,6 +7,7 @@ public enum EEnemyType
     Straight,
     Trace,
     Bounce,
+    Boss
 }
 
 public class EnemyFactory : MonoBehaviour
@@ -17,6 +18,7 @@ public class EnemyFactory : MonoBehaviour
     [SerializeField]private GameObject _straightEnemyPrefab;
     [SerializeField]private GameObject _traceEnemyPrefab;
     [SerializeField]private GameObject _bounceEnemyPrefab;
+    [SerializeField] private GameObject _bossEnemyPrefab;
     
     [Header("풀링")] 
     public int PoolSize = 20;
@@ -93,5 +95,10 @@ public class EnemyFactory : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void MakeBoss(Vector3 position)
+    {
+        Instantiate(_bossEnemyPrefab, position, Quaternion.identity);
     }
 }
