@@ -29,7 +29,11 @@ public abstract class Bullet : MonoBehaviour
         MoveBullet();
     }
 
-
+    private void OnEnable()
+    {
+        _isHit = false;         
+    }
+    
     protected Vector2 GetDirection(BulletDirection direction)
     {
         switch(direction)
@@ -60,14 +64,15 @@ public abstract class Bullet : MonoBehaviour
 
         if (_isHit)
         {   
-            Destroy(gameObject);
+            _isHit = false;
+            gameObject.SetActive(false);
             return;
         }
         EnemyHitBox enemyHit = target.GetComponent<EnemyHitBox>();
         enemyHit.OnHit(Damage);
 
         _isHit = true;
-
-        Destroy(gameObject);
+        
+        gameObject.SetActive(false);
     }
 }

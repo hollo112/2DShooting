@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [Header("체력")]
-    private float _health = 100f;
+    [SerializeField] float _maxHealth = 100f;
+    private float _health;
     [Header("점수")]
     private int _score = 100;
 
@@ -26,11 +28,15 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        _health = _maxHealth;
+    }
+
     public void TakeDamage(float Damage)
     {
         _animator.SetTrigger("Hit");
         _health -= Damage;
-
         if (_health <= 0)
         {
             Die();
@@ -48,7 +54,7 @@ public class EnemyHealth : MonoBehaviour
 
         ScoreManager.Instance.AddScore( _score );
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void DieImmediately()

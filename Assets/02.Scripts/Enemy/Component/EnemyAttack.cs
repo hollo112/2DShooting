@@ -16,6 +16,6 @@ public class EnemyAttack : MonoBehaviour
         PlayerHealth playerHealth = target.GetComponent<PlayerHealth>();
         playerHealth.TakeDamage(Damage);
 
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
 }

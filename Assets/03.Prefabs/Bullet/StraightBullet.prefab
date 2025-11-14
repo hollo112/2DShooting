@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 6
-  Damage: 60
+  Damage: 40
   Direction: 0
   FirstSpeed: 1
   LastSpeed: 9
