@@ -3,8 +3,8 @@
 public class StraightBullet : Bullet
 {
     [Header("이동속도")]
-    public float FirstSpeed = 1f;
-    public float LastSpeed = 7f;
+    public float FirstSpeed ;
+    public float LastSpeed ;
     //
     [Header("가속시간")]
     public float AccerationTime = 1.2f;
@@ -14,6 +14,10 @@ public class StraightBullet : Bullet
     protected override void Start()
     {
         base.Start();
+    }
+
+    private void OnEnable()
+    {
         Speed = FirstSpeed;
     }
 

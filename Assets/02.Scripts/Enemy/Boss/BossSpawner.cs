@@ -3,10 +3,16 @@ using UnityEngine;
 
 public class BossSpawner : MonoBehaviour
 {
-    private int _bossSpawnScore = 1000;
-    private bool _isSpawned = false;
+    private int _startScore = 1000;
+    private int _interval = 1000;
+    private int _nextSpawnScore;
     public static event Action OnBossSpawned;
+    private GameObject _boss;
 
+    private void Start()
+    {
+        _nextSpawnScore = _startScore;
+    }
     private void OnEnable()
     {
         ScoreManager.OnScoreChanged += HandleScore;
@@ -17,19 +23,16 @@ public class BossSpawner : MonoBehaviour
     }
     private void HandleScore(int score)
     {
-        Debug.Log("HandleScore: " + score);
-        if (_isSpawned) return;
-
-        if (score >= _bossSpawnScore)
+        if (score >= _nextSpawnScore)
         {
-            _isSpawned = true;
             SpawnBoss();
+            _nextSpawnScore += _interval; // 다음 목표 점수로 업데이트
         }
     }
 
     private void SpawnBoss()                                
     {
-        EnemyFactory.Instance.MakeBoss(transform.position);
+        _boss = EnemyFactory.Instance.MakeBoss(transform.position);
         OnBossSpawned?.Invoke();
     }
 }

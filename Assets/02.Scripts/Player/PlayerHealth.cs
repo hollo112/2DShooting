@@ -3,7 +3,7 @@
 public class PlayerHealth : MonoBehaviour
 {
     [Header("능력치")]
-    private float _health = 3;
+    private float _health = 5;
     private const float _maxhealth = 3;
 
     [Header("이펙트 프리팹")]

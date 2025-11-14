@@ -104,8 +104,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 6
   Damage: 10
+  IsPlayer: 1
   Direction: 0
-  FirstSpeed: 1
+  FirstSpeed: 6
   LastSpeed: 9
   AccerationTime: 1.2
 --- !u!50 &-1766374397071855072

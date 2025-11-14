@@ -28,6 +28,7 @@ public class ItemMagnet : MonoBehaviour
             WaitTimer();
             return;
         }
+        if(_player == null) return;
 
         _curveTimer += Time.deltaTime;
         _timer += Time.deltaTime * MoveSpeed;
