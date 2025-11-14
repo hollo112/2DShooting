@@ -12,9 +12,12 @@ public class CircleBullet : Bullet
     protected override void Start()
     {
         base.Start();
-        _centerPosition = transform.position;
     }
-
+    private void OnEnable()
+    {
+        _centerPosition = transform.position;
+        _angle = 0f;
+    }
     public override void MoveBullet()
     {
         _angle += AngularSpeed * Time.deltaTime;

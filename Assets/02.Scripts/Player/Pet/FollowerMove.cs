@@ -19,6 +19,7 @@ public class FollowerMove : MonoBehaviour
 
     private void FollowTarget()
     {
+        if(Target == null) return;
         _targetPosition = Target.position;
 
         // 1. 부모 위치 큐에 추가

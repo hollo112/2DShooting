@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public enum EBulletType
 {
     StraightBullet,
     SubBullet,
-    WaveBullet,
-    CircleBullet,
     HeartBullet,
     PetBullet,
+    BossWave,
+    BossStraight,
+    BossCircle,
 }
 public class BulletFactory : MonoBehaviour
 {
@@ -18,13 +18,14 @@ public class BulletFactory : MonoBehaviour
     [Header("총알 프리팹")]
     [SerializeField]private GameObject _straightBulletPrefab;
     [SerializeField]private GameObject _subBulletPrefab;
-    [SerializeField]private GameObject _waveBulletPrefab;
-    [SerializeField]private GameObject _circleBulletPrefab;
     [SerializeField]private GameObject _heartBulletPrefab;
     [SerializeField]private GameObject _petBulletPrefab;
+    [SerializeField]private GameObject _BossWaveBulletPrefab;
+    [SerializeField]private GameObject _BossStraightBulletPrefab;
+    [SerializeField]private GameObject _BossCircleBulletPrefab;
 
     [Header("풀링")] 
-    public int PoolSize = 30;
+    public int PoolSize = 20;
     private Dictionary<EBulletType, GameObject> _bulletPrefabs;      // 프리팹 저장
     private Dictionary<EBulletType, GameObject[]> _bulletPools;      // 각 타입별 풀 저장
 
@@ -47,10 +48,11 @@ public class BulletFactory : MonoBehaviour
         {
             { EBulletType.StraightBullet, _straightBulletPrefab },
             { EBulletType.SubBullet, _subBulletPrefab },
-            { EBulletType.WaveBullet, _waveBulletPrefab },
-            { EBulletType.CircleBullet, _circleBulletPrefab },
             { EBulletType.HeartBullet, _heartBulletPrefab },
             { EBulletType.PetBullet, _petBulletPrefab },
+            { EBulletType.BossWave, _BossWaveBulletPrefab },
+            { EBulletType.BossStraight, _BossStraightBulletPrefab },
+            { EBulletType.BossCircle, _BossCircleBulletPrefab },
         };
     }
 

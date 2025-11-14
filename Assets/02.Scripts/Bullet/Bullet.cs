@@ -6,7 +6,8 @@ public abstract class Bullet : MonoBehaviour
     public float Speed = 6f;
     [Header("탄환 데미지")]
     public float Damage = 60f;
-
+    [Header("총알 소유")]
+    public bool IsPlayer = true;
     private bool _isHit = false;
     public enum BulletDirection
     {
@@ -55,7 +56,24 @@ public abstract class Bullet : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        DamageEnemy(other.gameObject);
+        if (IsPlayer)
+        {
+            DamageEnemy(other.gameObject);
+        }
+        else
+        {
+            DamagePlayer(other.gameObject);
+        }
+    }
+
+    private void DamagePlayer(GameObject target)
+    {
+        if (target.CompareTag("Player") == false) return;
+        
+        PlayerHealth playerHealth = target.GetComponent<PlayerHealth>();
+        playerHealth.TakeDamage(Damage);
+
+        gameObject.SetActive(false);
     }
 
     private void DamageEnemy(GameObject target)

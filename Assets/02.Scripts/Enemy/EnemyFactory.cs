@@ -97,8 +97,9 @@ public class EnemyFactory : MonoBehaviour
         return null;
     }
 
-    public void MakeBoss(Vector3 position)
+    public GameObject MakeBoss(Vector3 position)
     {
-        Instantiate(_bossEnemyPrefab, position, Quaternion.identity);
+        Debug.Log("MakeBoss");
+        return Instantiate(_bossEnemyPrefab, position, Quaternion.identity);
     }
 }

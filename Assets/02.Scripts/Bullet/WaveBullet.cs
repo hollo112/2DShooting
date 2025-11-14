@@ -13,6 +13,11 @@ public class WaveBullet : Bullet
     protected override void Start()
     {
         base.Start();
+    }
+
+    private void OnEnable()
+    {
+        _elapsedTime = 0f;
         _startPosition = transform.position;
     }
     public override void MoveBullet()

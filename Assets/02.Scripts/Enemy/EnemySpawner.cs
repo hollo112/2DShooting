@@ -30,17 +30,25 @@ public class EnemySpawner : MonoBehaviour
     private void OnEnable()
     {
         BossSpawner.OnBossSpawned += StopSpawn;
+        BossDestroy.OnBossDie += StartSpawn;
     }
 
     private void OnDisable()
     {
         BossSpawner.OnBossSpawned -= StopSpawn;
+        BossDestroy.OnBossDie -= StartSpawn;
     }
-
+    
     private void StopSpawn()
     {
         _canSpawn = false;
     }
+    
+    private void StartSpawn()
+    {
+        _canSpawn = true;
+    }
+
     
     private void SetCooltimeRandom()
     {

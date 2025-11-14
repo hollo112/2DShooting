@@ -82,14 +82,14 @@ public class PlayerFire : MonoBehaviour
         {
             CurrentBulletType = EBulletType.StraightBullet;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            CurrentBulletType = EBulletType.WaveBullet;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            CurrentBulletType = EBulletType.CircleBullet;
-        }
+        // else if (Input.GetKeyDown(KeyCode.Alpha4))
+        // {
+        //     CurrentBulletType = EBulletType.WaveBullet;
+        // }
+        // else if (Input.GetKeyDown(KeyCode.Alpha5))
+        // {
+        //     CurrentBulletType = EBulletType.CircleBullet;
+        // }
         else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             CurrentBulletType = EBulletType.HeartBullet;
