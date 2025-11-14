@@ -1169,7 +1169,7 @@ MonoBehaviour:
   - {fileID: 1610484617}
   - {fileID: 684161511}
   FireSound: {fileID: 1032998987}
-  CurrentFireType: 2
+  CurrentFireType: 1
   CurrentBulletType: 0
 --- !u!50 &703358265
 Rigidbody2D:
